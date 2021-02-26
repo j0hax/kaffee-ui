@@ -3,6 +3,7 @@
 ![screenshot](Screen%20Shot%202021-02-26%20at%2017.19.23.png "Erster Screenshot")
 
 ## Roadmap
+- [x] Kiosk-VM aufsetzen
 - [x] Vorläufiger Entwurf
 - [ ] Server schreiben
   - [ ] Schnittstelle Implementieren (JSON-RPC?)
