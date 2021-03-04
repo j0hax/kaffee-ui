@@ -22,7 +22,7 @@ Nutzer werden mittels `localStorage` in einem stringified Array zwischengespeich
 [
    {
       "name":"Johannes Arnold",
-      "drinks":42,
+      "drinkCount":42,
       "balance":9000,
       "lastUpdate":1614867820842
    }

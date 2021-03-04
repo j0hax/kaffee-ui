@@ -9,7 +9,7 @@
 function add_user(name) {
     var newUser = {
         name: name,
-        drinks: 0,
+        drinkCount: 0,
         balance: 0,
         lastUpdate: Date.now()
     };
@@ -21,10 +21,10 @@ function add_user(name) {
     set_users(users);
 }
 
-function add_user(name, drinks, balance) {
+function add_user(name, drinkCount, balance) {
     var newUser = {
         name: name,
-        drinks: drinks,
+        drinkCount: drinkCount,
         balance: balance,
         lastUpdate: Date.now()
     };
