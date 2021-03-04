@@ -8,7 +8,7 @@
 - [ ] Server schreiben
   - [ ] Schnittstelle Implementieren (JSON-RPC?)
 - [ ] UI mit Server verknüpfen
-- [ ] Caching implementieren
+- [x] Caching implementieren
 - [ ] UI als Touchdisplay physisch implementieren
 
 ## Funktion
