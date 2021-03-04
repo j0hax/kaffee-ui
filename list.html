@@ -30,7 +30,7 @@
             balanceCell = row.insertCell();
             lastChange = row.insertCell();
             
-            var euro = (item.balance - item.drinkCount*30) / 100;
+            var euro = (item.balance - item.drinkCount * drinkPrice) / 100;
             var lastUpdate = new Date(item.lastUpdate);
             
             nameCell.innerHTML = item.name;

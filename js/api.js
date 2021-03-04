@@ -5,6 +5,9 @@
  * NOTE: Currently, only local operations are supported.
  */
 
+// global drink price
+const drinkPrice = 30;
+
 // add a user
 function add_user(name) {
     var newUser = {
