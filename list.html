@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href= "https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity= "sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/api.js"></script>
+    <script>
+        // WARNING: demonstration code only!
+        
+        localStorage.users = "";
+        
+        for (var i = 0; i < 100; i++) {
+            var name = "Name " + i;
+            var drinkCount = Math.floor(Math.random() * 100);
+            var balance = Math.floor(Math.random() * 5000);
+            add_user(name, drinkCount, balance);
+        }
+
+</script>
+  </head>
+  <body>
+    <table class="pure-table pure-table-horizontal balances">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Kaffees</th>
+            <th>Bilanz</th>
+            <th>Letzte Änderung</th>
+        </tr>
+    </thead>
+    <tbody id = "table">
+    </tbody>
+    </table>
+    <script>
+        table = document.getElementById("table");
+        users = get_users();
+        
+        users.forEach(function(item, index, array) {
+            row = table.insertRow();
+            nameCell = row.insertCell();
+            countCell = row.insertCell();
+            balanceCell = row.insertCell();
+            lastChange = row.insertCell();
+            
+            var euro = (item.balance - item.drinkCount*30) / 100;
+            var lastUpdate = new Date(item.lastUpdate);
+            
+            nameCell.innerHTML = item.name;
+            countCell.innerHTML = item.drinkCount;
+            balanceCell.innerHTML = euro.toLocaleString('de-DE', {style:"currency", currency:"EUR"});
+            lastChange.innerHTML = lastUpdate.toLocaleDateString('de-DE');
+;
+        });
+    </script>
+  </body>
+</html>

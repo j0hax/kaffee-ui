@@ -12,11 +12,11 @@
 <div class="side-menu dark pure-menu">
     <span class="pure-menu-heading">Kaffee</span>
     <ul class="pure-menu-list">
-    <li class="pure-menu-item pure-menu-selected">
-        <a href="#" class="pure-menu-link">Buchen</a>
+    <li class="pure-menu-item">
+        <a href="#" class="pure-menu-link" onclick = "viewer.data = 'book.html'">Buchen</a>
     </li>
     <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link">Liste</a>
+        <a href="#" class="pure-menu-link" onclick = "viewer.data = 'list.html'">Liste</a>
     </li>
     <li class="pure-menu-item">
         <a href="#" class="pure-menu-link">Menü</a>
@@ -36,7 +36,10 @@
     </li>
     </ul>
 </div>
-<object class="main" data="book.html" type="text/html"></object>
+<object id="main" data="book.html" type="text/html"></object>
+<script>
+    viewer = document.getElementById("main");
+</script>
 </div>
 </body>
 </html>

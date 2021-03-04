@@ -23,7 +23,7 @@ html, body {
     background-color: #aaa;
 }
 
-.main {
+#main {
     margin-left: 10em;
     padding: 1em;
     width: calc(100% - 12em);
@@ -45,4 +45,8 @@ html, body {
 
 .user-button:hover {
     background-color: #e87910;
+}
+
+.balances {
+    width: 100%;
 }
