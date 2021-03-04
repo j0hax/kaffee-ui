@@ -30,4 +30,4 @@ Nutzer werden mittels `localStorage` in einem stringified Array zwischengespeich
 ```
 *Beispiel: Nutzer Johannes Arnold hatte 90€ eingezahlt und inzwischen wieder 42 Kaffee getrunken.*
 
-Später soll der Server mittels lastUpdate abgleichen, welche Daten aktueller und somit fit zur Synchronisation sind.
+Später soll der Server mittels UNIX-Timestamp `lastUpdate` abgleichen, welche Daten aktueller und somit geeignet zur Synchronisation sind.
