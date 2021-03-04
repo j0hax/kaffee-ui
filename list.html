@@ -20,8 +20,8 @@
     </tbody>
     </table>
     <script>
-        table = document.getElementById("table");
-        users = get_users();
+        var table = document.getElementById("table");
+        var users = get_users();
         
         users.forEach(function(item, index, array) {
             row = table.insertRow();
@@ -41,7 +41,7 @@
                 balanceCell.classList.add('debt');
             }
             
-            lastChange.innerHTML = lastUpdate.toLocaleDateString('de-DE');
+            lastChange.innerHTML = lastUpdate.toLocaleString('de-DE');
         });
     </script>
   </body>
