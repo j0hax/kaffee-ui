@@ -50,3 +50,7 @@ html, body {
 .balances {
     width: 100%;
 }
+
+.debt {
+    color: red
+}

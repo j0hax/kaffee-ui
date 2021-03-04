@@ -49,8 +49,12 @@
             nameCell.innerHTML = item.name;
             countCell.innerHTML = item.drinkCount;
             balanceCell.innerHTML = euro.toLocaleString('de-DE', {style:"currency", currency:"EUR"});
+            
+            if (euro <= -10) {
+                balanceCell.classList.add('debt');
+            }
+            
             lastChange.innerHTML = lastUpdate.toLocaleDateString('de-DE');
-;
         });
     </script>
   </body>
