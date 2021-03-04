@@ -21,6 +21,21 @@ function add_user(name) {
     set_users(users);
 }
 
+function add_user(name, drinks, balance) {
+    var newUser = {
+        name: name,
+        drinks: drinks,
+        balance: balance,
+        lastUpdate: Date.now()
+    };
+    
+    console.log("Adding user", name);
+    
+    var users = get_users();
+    users.push(newUser);
+    set_users(users);
+}
+
 // add balance to a user
 function add_balance(user, balance) {
 }
