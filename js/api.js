@@ -9,7 +9,9 @@
 function add_user(name) {
     var newUser = {
         name: name,
-        balance: 0
+        drinks: 0,
+        balance: 0,
+        lastUpdate: Date.now()
     };
     
     console.log("Adding user", name);
