@@ -10,3 +10,7 @@
 - [ ] UI mit Server verknüpfen
 - [ ] Caching implementieren
 - [ ] UI als Touchdisplay physisch implementieren
+
+## Funktion
+- `index.html` ist die Hauptseite, welche nie verlassen wird.
+    - `book.html` erlaubt es, Nutzer zu buchen.
