@@ -1,6 +1,7 @@
 # kaffee-ui
 
-![screenshot](screenshot.png "Zweiter Screenshot")
+![screenshot](screenshots/main.png "Zweiter Screenshot")
+![screenshot](screenshots/list.png "Übersicht der Konten")
 
 ## Roadmap
 - [x] Kiosk-VM aufsetzen
