@@ -48,11 +48,15 @@ function sub_balance(user, balance) {
     add_balance(user, -(balance));
 }
 
+// sort users by their last modified date
+function compare_users(a, b) {
+    return b.lastUpdate - a.lastUpdate;
+}
+
 // get a list of users
 function get_users() {
-    console.log("Retrieving locally stored users...");
     // get our users, or an empty array if empty
-    return JSON.parse(localStorage.getItem("users") || "[]");
+    return JSON.parse(localStorage.getItem("users") || "[]").sort(compare_users);
 }
 
 // save a list of users
