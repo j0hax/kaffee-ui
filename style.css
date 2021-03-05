@@ -3,6 +3,10 @@ html, body {
     height: 100%
 }
 
+* {
+    user-select: none;
+}
+
 .side-menu {
     position: fixed;
     top: 0;
