@@ -10,12 +10,7 @@ const drinkPrice = 30;
 
 // add a user
 function add_user(name) {
-    var newUser = {
-        name: name,
-        drinkCount: 0,
-        balance: 0,
-        lastUpdate: Date.now()
-    };
+    
     
     console.log("Adding user", name);
     
@@ -38,6 +33,19 @@ function add_user(name, drinkCount, balance) {
     users.push(newUser);
     set_users(users);
 }
+
+// User books a drink
+function add_drink(username) {
+    console.log("Booked a coffee for " + username);
+    
+    let users = get_users();
+    
+    let foundUser = users.find(({ name }) => name === username);
+    foundUser.drinkCount += 1;
+    
+    set_users(users);
+}
+
 
 // add balance to a user
 function add_balance(user, balance) {

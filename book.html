@@ -26,6 +26,7 @@
             let name = document.createElement("div");
             name.innerHTML = users[i].name;
             name.classList.add("user-button");
+            name.onclick = () => add_drink(name.innerHTML);
             
             gridElement.appendChild(name);
             grid.appendChild(gridElement);
