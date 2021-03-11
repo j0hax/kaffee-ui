@@ -6,8 +6,9 @@
 ## Roadmap
 - [x] Kiosk-VM aufsetzen
 - [x] Vorläufiger Entwurf
+- [ ] Schnittstelle für Scanner/RFID implementieren
 - [ ] Server schreiben
-  - [ ] Schnittstelle Implementieren (JSON-RPC?)
+  - [ ] Schnittstelle implementieren (JSON-RPC?)
 - [ ] UI mit Server verknüpfen
 - [x] Caching implementieren
 - [ ] UI als Touchdisplay physisch implementieren
