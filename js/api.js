@@ -35,8 +35,10 @@ function add_user(name, drinkCount, balance) {
 }
 
 // User books a drink
-function add_drink(username) {
-    console.log("Booked a coffee for " + username);
+function add_drink(element) {
+    
+    // extract the name
+    username = element.innerHTML;
     
     let users = get_users();
     
@@ -44,6 +46,12 @@ function add_drink(username) {
     foundUser.drinkCount += 1;
     
     set_users(users);
+    
+    // add a visual notification
+    element.classList.remove("confirmed");
+    element.classList.add("confirmed");
+    
+    console.log("Booked a coffee for " + username);
 }
 
 
