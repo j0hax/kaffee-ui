@@ -9,6 +9,7 @@
   <body>
     <h1 class="center">Willkommen!</h1>
     <h2 class="center">Bitte Karte auflegen oder Namen auswählen.</h2>
+    <h3 class="center" id="scanner"></h3>
     <hr>
     <div class="pure-g" id="user-grid">
     </div>
@@ -31,6 +32,15 @@
             gridElement.appendChild(name);
             grid.appendChild(gridElement);
             
+        }
+    </script>
+    <script>
+        // Keylistener for UUIDs/Barcodes
+        document.addEventListener('keydown', logKey);
+        scannerElement = document.getElementById('scanner');
+
+        function logKey(e) {
+            scannerElement.innerHTML += String.fromCharCode(e.keyCode);
         }
     </script>
   </body>

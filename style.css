@@ -51,22 +51,14 @@ html, body {
     background-color: #e87910;
 }
 
-.user-button.confirmed {
-    animation-duration: 1s;
-    animation-name: confirm;
-    animation-timing-function: ease-out;
-}
-
-
-@keyframes confirm {
-  from {background-color: green;}
-  to   {background-color: #ccc;}
-}
-
 .balances {
     width: 100%;
 }
 
 .debt {
     color: red
+}
+
+#scanner {
+    font-family: monospace;
 }
