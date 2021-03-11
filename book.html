@@ -49,15 +49,20 @@
         scannerElement = document.getElementById('scanner');
 
         function logKey(e) {
-            scannerElement.style.display = "block";
             buffer.push(String.fromCharCode(e.keyCode));
-            scannerElement.innerHTML = "ID: " + buffer.join('');
+        
+            if (buffer.length == 36) {
+                scannerElement.innerHTML = "ID: " + buffer.join('');
+                scannerElement.style.display = "block";
+                
+                // hide element after some time
+                setTimeout(function() {
+                    scannerElement.style.display = "none";
+                    buffer.length = 0;
+                }, 2000);
+            }
             
-            // hide element after some time
-            setTimeout(function() {
-                scannerElement.style.display = "none";
-                buffer.length = 0;
-            }, 2000);
+            
 
         }
     </script>
