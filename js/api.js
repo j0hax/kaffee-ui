@@ -48,8 +48,16 @@ function add_drink(element) {
     set_users(users);
     
     // add a visual notification
-    element.classList.remove("confirmed");
-    element.classList.add("confirmed");
+    //element.classList.remove("confirmed");
+    //element.classList.toggle("confirmed");
+    element.animate([
+        // keyframes
+        { backgroundColor: 'green' },
+        { backgroundColor: '#ccc' }
+    ], {
+        // timing options
+        duration: 1000,
+    });
     
     console.log("Booked a coffee for " + username);
 }
