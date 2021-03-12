@@ -41,6 +41,7 @@ function add_drink(username) {
     
     let foundUser = users.find(({ name }) => name === username);
     foundUser.drinkCount += 1;
+    foundUser.lastUpdate = Date.now();
     
     set_users(users);
     
