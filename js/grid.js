@@ -16,8 +16,16 @@ function updateGrid () {
     name.innerHTML = users[i].name
     name.classList.add('user-button')
     name.onclick = function () {
+      this.animate([
+        { filter: 'brightness(50%)' },
+        { filter: 'brightness(100%)' }
+      ], {
+        duration: 500
+      });
       add_drink(name.innerHTML)
-      updateGrid()
+      
+      setTimeout(updateGrid, 500)
+      
     }
 
     gridElement.appendChild(name)
