@@ -35,10 +35,7 @@ function add_user(name, drinkCount, balance) {
 }
 
 // User books a drink
-function add_drink(element) {
-    
-    // extract the name
-    username = element.innerHTML;
+function add_drink(username) {
     
     let users = get_users();
     
@@ -46,18 +43,6 @@ function add_drink(element) {
     foundUser.drinkCount += 1;
     
     set_users(users);
-    
-    // add a visual notification
-    //element.classList.remove("confirmed");
-    //element.classList.toggle("confirmed");
-    element.animate([
-        // keyframes
-        { backgroundColor: 'green' },
-        { backgroundColor: '#ccc' }
-    ], {
-        // timing options
-        duration: 1000,
-    });
     
     //console.log("Booked a coffee for " + username);
     showStatus("Kaffee für " + username + " gebucht.");

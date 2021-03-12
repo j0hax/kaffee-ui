@@ -26,7 +26,7 @@
             let name = document.createElement("div");
             name.innerHTML = users[i].name;
             name.classList.add("user-button");
-            name.onclick = () => add_drink(name);
+            name.onclick = () => add_drink(name.innerHTML);
             
             gridElement.appendChild(name);
             grid.appendChild(gridElement);
@@ -48,10 +48,12 @@
 
         function logKey(e) {
             buffer.push(String.fromCharCode(e.keyCode));
-        
-            if (buffer.length == 8) {
-                showStatus("ID: " + buffer.join(''));
-                buffer.length = 0;
+            
+            idString = buffer.join('');
+            let foundUser = users.find(user => idString.includes(user.serial));
+            
+            if (foundUser) {
+                add_drink(foundUser.name);
             }
         }
     </script>
