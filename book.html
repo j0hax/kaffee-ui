@@ -12,63 +12,7 @@
     <hr>
     <div class="pure-g" id="user-grid">
     </div>
-    <script>
-        function updateGrid() {
-            grid = document.getElementById("user-grid");
-            
-            // clear
-            grid.innerHTML = "";
-        
-            users = get_users();
-            
-            for (i = 0; i < users.length; i++) {
-                // our grid element
-                let gridElement = document.createElement("div");
-                gridElement.className = "pure-u-1-3";
-                
-                // our name
-                let name = document.createElement("div");
-                name.innerHTML = users[i].name;
-                name.classList.add("user-button");
-                name.onclick = function() {
-                    add_drink(name.innerHTML);
-                    updateGrid();
-                };
-                
-                gridElement.appendChild(name);
-                grid.appendChild(gridElement);
-                
-            }
-        }
-        
-        window.onLoad = updateGrid();
-    </script>
-    <script>
-        // weird ringpuffer
-        var buffer = new Array()
-        buffer.push = function (){
-            if (this.length >= 8) {
-                this.shift();
-            }
-            return Array.prototype.push.apply(this,arguments);
-        }
-        
-        // Keylistener for UUIDs/Barcodes
-        document.addEventListener('keydown', logKey);
-
-        function logKey(e) {
-            buffer.push(String.fromCharCode(e.keyCode));
-            
-            idString = buffer.join('');
-            
-            // search for users with this ID
-            let foundUser = users.find(user => idString.includes(user.serial));
-            if (foundUser) {
-                // if we have a match, book a drink and reset the buffer
-                add_drink(foundUser.name);
-                buffer.length = 0;
-            }
-        }
-    </script>
+    <script src="js/grid.js"></script>
+    <script src="js/serialinput.js"></script>
   </body>
 </html>
