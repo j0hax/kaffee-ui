@@ -50,10 +50,13 @@
             buffer.push(String.fromCharCode(e.keyCode));
             
             idString = buffer.join('');
-            let foundUser = users.find(user => idString.includes(user.serial));
             
+            // search for users with this ID
+            let foundUser = users.find(user => idString.includes(user.serial));
             if (foundUser) {
+                // if we have a match, book a drink and reset the buffer
                 add_drink(foundUser.name);
+                buffer.length = 0;
             }
         }
     </script>
