@@ -8,8 +8,7 @@
   </head>
   <body>
     <h1 class="center">Willkommen!</h1>
-    <h2 class="center">Bitte Karte auflegen oder Namen auswählen.</h2>
-    <h3 class="center" id="scanner"></h3>
+    <h2 class="center" id="status">Bitte Karte auflegen oder Namen auswählen.</h2>
     <hr>
     <div class="pure-g" id="user-grid">
     </div>
@@ -38,7 +37,7 @@
         // weird ringpuffer
         var buffer = new Array()
         buffer.push = function (){
-            if (this.length >= 36) {
+            if (this.length >= 8) {
                 this.shift();
             }
             return Array.prototype.push.apply(this,arguments);
@@ -46,24 +45,14 @@
         
         // Keylistener for UUIDs/Barcodes
         document.addEventListener('keydown', logKey);
-        scannerElement = document.getElementById('scanner');
 
         function logKey(e) {
             buffer.push(String.fromCharCode(e.keyCode));
         
-            if (buffer.length == 36) {
-                scannerElement.innerHTML = "ID: " + buffer.join('');
-                scannerElement.style.display = "block";
-                
-                // hide element after some time
-                setTimeout(function() {
-                    scannerElement.style.display = "none";
-                    buffer.length = 0;
-                }, 2000);
+            if (buffer.length == 8) {
+                showStatus("ID: " + buffer.join(''));
+                buffer.length = 0;
             }
-            
-            
-
         }
     </script>
   </body>

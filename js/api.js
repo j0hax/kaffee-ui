@@ -59,7 +59,8 @@ function add_drink(element) {
         duration: 1000,
     });
     
-    console.log("Booked a coffee for " + username);
+    //console.log("Booked a coffee for " + username);
+    showStatus("Kaffee für " + username + " gebucht.");
 }
 
 
@@ -99,4 +100,25 @@ function set_users(users) {
         console.error("Unable to parse JSON!");
         return false;
     }
+}
+
+// temporarily shows a status
+function showStatus(message, success = true) {
+    let status = document.getElementById('status');
+    
+    // stop if the element doesn't exist
+    if (status === null) return;
+    
+    let tmp = status.innerHTML;
+    
+    if (success) {
+        status.innerHTML = "✓ " + message;
+    } else {
+        status.innerHTML = "✗ " + message;
+    }
+    
+    setTimeout(function () {
+        status.innerHTML = tmp;
+    }, 2000);
+
 }

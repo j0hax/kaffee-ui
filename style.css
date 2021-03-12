@@ -58,9 +58,3 @@ html, body {
 .debt {
     color: red
 }
-
-#scanner {
-    font-family: monospace;
-    display: none;
-    transition: all 1s ease-out;
-}
