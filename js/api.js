@@ -95,3 +95,33 @@ function showStatus (message, success = true) {
     status.innerHTML = tmp
   }, 2000)
 }
+
+// Sends and recieves the current 
+function sync() {
+    const users = get_users()
+    const key = config.apiKey
+    
+    const data = {
+        "apiKey": key,
+        "users": users
+    }
+    
+    window.fetch(config.server, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Success:', data);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+        
+    window.fetch(config.server)
+    .then(response => response.json())
+    .then(data => set_users(data));
+}
