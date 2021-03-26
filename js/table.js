@@ -10,7 +10,7 @@ function updateTable() {
     lastChange = row.insertCell()
 
     const euro = (item.balance - item.drinkCount * drinkPrice) / 100
-    const lastUpdate = new Date(item.lastUpdate)
+    const lastUpdate = new Date(item.lastUpdate * 1000)
 
     nameCell.innerHTML = item.name
     countCell.innerHTML = item.drinkCount

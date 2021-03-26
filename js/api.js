@@ -14,7 +14,7 @@ function add_user (name, drinkCount = 0, balance = 0) {
     name: name,
     drinkCount: drinkCount,
     balance: balance,
-    lastUpdate: Date.now()
+    lastUpdate: Date.now() / 1000
   }
 
   console.log('Adding user', name)
@@ -30,7 +30,7 @@ function add_drink (username) {
 
   const foundUser = users.find(({ name }) => name === username)
   foundUser.drinkCount += 1
-  foundUser.lastUpdate = Date.now()
+  foundUser.lastUpdate = Date.now() / 1000
 
   set_users(users)
 
