@@ -1,28 +1,7 @@
 /* API for interacting between Client and Server
  * Primary function is to provide access to the locally stored users array
  * and synchronise this with a server.
- *
- * NOTE: Currently, only local operations are supported.
  */
-
-// global drink price
-const drinkPrice = 30
-
-// add a user
-function add_user (name, drinkCount = 0, balance = 0) {
-  const newUser = {
-    name: name,
-    drinkCount: drinkCount,
-    balance: balance,
-    lastUpdate: Date.now() / 1000
-  }
-
-  console.log('Adding user', name)
-
-  const users = get_users()
-  users.push(newUser)
-  set_users(users)
-}
 
 // User books a drink
 function add_drink (username) {
@@ -38,15 +17,6 @@ function add_drink (username) {
   showStatus('Kaffee für ' + username + ' gebucht.')
 }
 
-// add balance to a user
-function add_balance (user, balance) {
-}
-
-// subtract balance to a user
-function sub_balance (user, balance) {
-  add_balance(user, -(balance))
-}
-
 // sort users by their last modified date
 function compare_users (a, b) {
   return b.lastUpdate - a.lastUpdate
@@ -54,8 +24,8 @@ function compare_users (a, b) {
 
 // get a list of users
 function get_users () {
-  // get our users, or an empty array if empty
-  return JSON.parse(localStorage.getItem('users') || '[]').sort(compare_users)
+    sync_users();
+    return JSON.parse(localStorage.getItem('users') || '[]')
 }
 
 // save a list of users
@@ -69,11 +39,47 @@ function set_users (users) {
   try {
     usersString = JSON.stringify(users)
     // save it
-    return localStorage.setItem('users', usersString)
+    localStorage.setItem('users', usersString)
   } catch (e) {
     console.error('Unable to parse JSON!')
-    return false
   }
+  
+  sync_users();
+}
+
+// sends data to the server, and uses the servers response as the new data
+function sync_users () {
+  // get our users, or an empty array if empty
+  const users = JSON.parse(localStorage.getItem('users') || '[]')
+
+  // send out users to the server, if possible
+  const key = config.apiKey
+
+  const data = {
+    apiKey: key,
+    users: users
+  }
+
+  window.fetch(config.server, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      // updated_users = JSON.parse(data)
+      if (!Array.isArray(data)) {
+        throw 'Error, wrong data type! Check authentication.'
+      }
+
+      localStorage.setItem('users', JSON.stringify(data))
+      console.log('Successfully synced ' + data.length + ' users')
+    })
+    .catch((error) => {
+      console.error('Error:', error)
+    })
 }
 
 // temporarily shows a status
@@ -94,34 +100,4 @@ function showStatus (message, success = true) {
   setTimeout(function () {
     status.innerHTML = tmp
   }, 2000)
-}
-
-// Sends and recieves the current 
-function sync() {
-    const users = get_users()
-    const key = config.apiKey
-    
-    const data = {
-        "apiKey": key,
-        "users": users
-    }
-    
-    window.fetch(config.server, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-        console.log('Success:', data);
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        });
-        
-    window.fetch(config.server)
-    .then(response => response.json())
-    .then(data => set_users(data));
 }
