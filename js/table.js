@@ -9,7 +9,7 @@ function updateTable() {
     balanceCell = row.insertCell()
     lastChange = row.insertCell()
 
-    const euro = (item.balance - item.drinkCount * drinkPrice) / 100
+    const euro = (item.balance - item.drinkCount * config.drinkPrice) / 100
     const lastUpdate = new Date(item.lastUpdate * 1000)
 
     nameCell.innerHTML = item.name
