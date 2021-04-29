@@ -1,11 +1,13 @@
 function updateGrid () {
   grid = document.getElementById('user-grid')
-
+  
   // clear
   grid.innerHTML = ''
 
   users = get_users()
 
+  console.log("Adding", users.length, "users...")
+  
   for (i = 0; i < users.length; i++) {
     // our grid element
     const gridElement = document.createElement('div')
@@ -23,9 +25,6 @@ function updateGrid () {
         duration: 500
       });
       add_drink(name.innerHTML)
-      
-      setTimeout(updateGrid, 500)
-      
     }
 
     gridElement.appendChild(name)
@@ -33,4 +32,12 @@ function updateGrid () {
   }
 }
 
-window.onLoad = updateGrid()
+window.onload = function() {
+    console.log("Document loaded, creating user grid...")
+    updateGrid()
+    
+    setInterval(function(){
+        console.log("[Autorefresh]")
+        updateGrid()
+    }, 30000)
+}
