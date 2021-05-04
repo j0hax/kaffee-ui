@@ -25,14 +25,9 @@ async function postData(resource = '', data = {}) {
 // User books a drink
 function add_drink (username) {
   const users = get_users()
-
   const foundUser = users.find(({ name }) => name === username)
-  foundUser.drinkCount += 1
-  foundUser.lastUpdate = Date.now() / 1000
 
-  set_users(users)
-
-  // console.log("Booked a coffee for " + username);
+  add_transaction(foundUser.id)
   showStatus('Kaffee für ' + username + ' gebucht.')
 }
 
@@ -43,62 +38,42 @@ function compare_users (a, b) {
 
 // get a list of users
 function get_users () {
-    sync_users();
+    sync();
     return JSON.parse(localStorage.getItem('users') || '[]')
 }
 
-// save a list of users
-function set_users (users) {
-  // parse to check if the input is valid
-  if (!Array.isArray(users)) {
-    console.error('Warning, set_users needs an array')
-    return false
-  }
+// add to a list of transactions
+function add_transaction (user) {
+  //sync();
+  transactions =  JSON.parse(localStorage.getItem('transactions') || '[]')
 
-  try {
-    usersString = JSON.stringify(users)
-    // save it
-    localStorage.setItem('users', usersString)
-  } catch (e) {
-    console.error('Unable to parse JSON!')
-  }
-  
-  sync_users();
+  transactions.push({
+    'user': user,
+    'amount': -(config.drinkPrice),
+    'description': 'Buchung vom Kaffeesysem',
+    'timestamp': Date.now() / 100
+  })
+
+  // save the transactions again
+  localStorage.setItem('transactions', JSON.stringify(transactions))
+  sync()
 }
 
-// sends data to the server, and uses the servers response as the new data
-function sync_users () {
-  // get our users, or an empty array if empty
-  const users = JSON.parse(localStorage.getItem('users') || '[]')
+function sync () {
 
-  // send out users to the server, if possible
-  const key = config.apiKey
+  transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
-  const data = {
-    apiKey: key,
-    users: users
-  }
-
-  window.fetch(config.server, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
+  // sync all pending transactions
+  postData('/transactions', transactions).then(
+    function(users) {
+      localStorage.setItem('users', JSON.stringify(users))
+      console.log("Synced %i users with %i transactions", users.length, transactions.length)
+      localStorage.setItem('transactions', '[]')
     },
-    body: JSON.stringify(data)
-  })
-    .then(response => response.json())
-    .then(data => {
-      // updated_users = JSON.parse(data)
-      if (!Array.isArray(data)) {
-        throw 'Error, wrong data type! Check authentication.'
-      }
-
-      localStorage.setItem('users', JSON.stringify(data))
-      console.log('Successfully synced ' + data.length + ' users')
-    })
-    .catch((error) => {
-      console.error('Error:', error)
-    })
+    function(data) {
+      console.error("Could not sync: server said " + data)
+    }
+  )
 }
 
 // temporarily shows a status
