@@ -3,6 +3,25 @@
  * and synchronise this with a server.
  */
 
+// POSTs data and returns the server response JSON
+async function postData(resource = '', data = {}) {
+
+  url = config.server + resource
+
+  const response = await fetch(url, {
+    method: 'POST',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-API-Key': config.apiKey
+    },
+    redirect: 'follow',
+    body: JSON.stringify(data)
+  });
+
+  return response.json();
+}
+
 // User books a drink
 function add_drink (username) {
   const users = get_users()
