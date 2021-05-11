@@ -23,7 +23,7 @@ async function postData(resource = '', data = {}) {
 }
 
 // User books a drink
-function add_drink (username) {
+function add_drink(username) {
   const users = get_users()
   const foundUser = users.find(({ name }) => name === username)
 
@@ -32,20 +32,20 @@ function add_drink (username) {
 }
 
 // sort users by their last modified date
-function compare_users (a, b) {
+function compare_users(a, b) {
   return b.lastUpdate - a.lastUpdate
 }
 
 // get a list of users
-function get_users () {
-    sync();
-    return JSON.parse(localStorage.getItem('users') || '[]')
+function get_users() {
+  sync();
+  return JSON.parse(localStorage.getItem('users') || '[]')
 }
 
 // add to a list of transactions
-function add_transaction (user) {
+function add_transaction(user) {
   //sync();
-  transactions =  JSON.parse(localStorage.getItem('transactions') || '[]')
+  transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   transactions.push({
     'user': user,
@@ -59,25 +59,25 @@ function add_transaction (user) {
   sync()
 }
 
-function sync () {
+function sync() {
 
   transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   // sync all pending transactions
   postData('/transactions', transactions).then(
-    function(users) {
+    function (users) {
       localStorage.setItem('users', JSON.stringify(users))
       console.log("Synced %i users with %i transactions", users.length, transactions.length)
       localStorage.setItem('transactions', '[]')
     },
-    function(data) {
+    function (data) {
       console.error("Could not sync: server said " + data)
     }
   )
 }
 
 // temporarily shows a status
-function showStatus (message, success = true) {
+function showStatus(message, success = true) {
   const status = document.getElementById('status')
 
   // stop if the element doesn't exist
