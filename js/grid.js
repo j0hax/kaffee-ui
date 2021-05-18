@@ -36,7 +36,7 @@ async function updateGrid(users) {
     const balance = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(users[i].balance / 100)
     const text = document.createElement('p')
     text.className = 'card-text'
-    text.innerHTML = 'Saldo: ' + balance
+    text.innerHTML = balance
 
     if (users[i].balance < -1000) {
       text.classList.add('debt')
