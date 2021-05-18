@@ -50,7 +50,7 @@
   <div class="container-fluid">
     <div class="row">
       <ul class="col d-flex p-3 nav nav-pills flex-column text-white bg-dark">
-        Kaffeesystem
+        <span id="title">Kaffeesystem</span>
         <hr>
         <li class="nav-item">
           <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#book">Buchen</a>
@@ -111,7 +111,7 @@
             eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
             zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer
             adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-          </p>
+          </p>new URL("http://example.com/aa/bb/").host
 
           <p>
             Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
@@ -136,7 +136,11 @@
   </div>
   <script>
     window.onload = function () {
-      console.log('HTML Loaded, beginning sync...')
+      // Set our App Title according to the configured server
+      const title = document.getElementById('title')
+      title.innerHTML = new URL(config.server).hostname
+
+      console.log('Beginning sync...')
       sync()
 
       setInterval(function () {
