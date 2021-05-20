@@ -1,45 +1,154 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-<meta name="generator" content= "HTML Tidy for HTML5 for Linux version 5.4.0">
-<meta charset="utf-8">
-<link rel="stylesheet" href= "https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity= "sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
-<meta name="viewport" content= "width=device-width, initial-scale=1">
-<title>Kaffeesystem</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <title>Kaffeesystem</title>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+    crossorigin="anonymous"></script>
+
+  <!-- Charjs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Coffee Stuff -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/table.js"></script>
+
+  <style>
+    /* Custom Colors */
+    :root {
+      --bs-primary: #79ac00;
+      --bs-blue: #79ac00;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+      background: #e87910;
+    }
+
+    .nav-link {
+      color: #e87910;
+    }
+
+    .debt {
+      color: red;
+    }
+  </style>
 </head>
+
 <body>
-<div class="side-menu dark pure-menu">
-    <span class="pure-menu-heading">Kaffee</span>
-    <ul class="pure-menu-list">
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link" onclick = "viewer.data = 'book.html'">Buchen</a>
-    </li>
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link" onclick = "viewer.data = 'list.html'">Liste</a>
-    </li>
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link">Menü</a>
-    </li>
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link">Nachbestellen</a>
-    </li>
-    <li class="pure-menu-heading">Informationen</li>
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link">Uhrzeit</a>
-    </li>
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link">Nachrichten</a>
-    </li>
-    <li class="pure-menu-item">
-        <a href="#" class="pure-menu-link">Server Status</a>
-    </li>
-    </ul>
-</div>
-<object id="main" data="book.html" type="text/html"></object>
-<script>
-    viewer = document.getElementById("main");
-</script>
-</div>
+  <div class="container-fluid">
+    <div class="row">
+      <ul class="col d-flex p-3 nav nav-pills flex-column text-white bg-dark">
+        <span id="title">Kaffeesystem</span>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#book">Buchen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#list">Liste</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" data-bs-target="#status">Status</a>
+        </li>
+      </ul>
+      </ul>
+      <!-- Tab panes -->
+      <div class="col-9 tab-content">
+        <div class="tab-pane active" id="book" role="tabpanel" aria-labelledby="home-tab">
+          <h1 class="text-center">Wilkommen</h1>
+          <h2 class="text-center">Bitte Namen wählen oder Karte auflegen</h2>
+          <div id="mainStatus" class="alert alert-primary collapse">
+          </div>
+          <hr>
+          <div class="container">
+            <div class="row g-2 row-cols-3" id="user-grid">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="list" role="tabpanel" aria-labelledby="profile-tab">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Buchungen</th>
+                <th scope="col">Saldo</th>
+                <th scope="col">Letzte Änderung</th>
+              </tr>
+            </thead>
+            <tbody id="overview"></tbody>
+          </table>
+        </div>
+        <div class="tab-pane" id="status" role="tabpanel" aria-labelledby="messages-tab">
+          <h2 class="text-center">Status</h2>
+          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+            labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+            clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+            sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+            elitr,
+            sed
+            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
+            et
+            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+            dolor sit amet.
+          </p>
+
+          <p>
+            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
+            eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
+            zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer
+            adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+          </p>new URL("http://example.com/aa/bb/").host
+
+          <p>
+            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex
+            ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
+            consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui
+            blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+          </p>
+
+          <p>
+            Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat
+            facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+            tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
+            tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+          </p>
+          <p>
+            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore
+            eu feugiat nulla facilisis.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.onload = function () {
+      // Set our App Title according to the configured server
+      const title = document.getElementById('title')
+      title.innerHTML = new URL(config.server).hostname
+
+      console.log('Beginning sync...')
+      sync()
+
+      setInterval(function () {
+        console.log("[Autorefresh]")
+        sync()
+      }, 30000)
+    }
+  </script>
 </body>
+
 </html>

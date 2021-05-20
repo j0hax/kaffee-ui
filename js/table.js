@@ -1,27 +1,22 @@
-function updateTable() {
-    const table = document.getElementById('table')
-    const users = get_users()
+function updateTable(users) {
+  const table = document.getElementById('overview')
+  table.innerHTML = ""
 
-    users.forEach(function (item, index, array) {
+  users.forEach(function (item, index, array) {
     row = table.insertRow()
     nameCell = row.insertCell()
     countCell = row.insertCell()
     balanceCell = row.insertCell()
     lastChange = row.insertCell()
 
-    const euro = (item.balance - item.drinkCount * config.drinkPrice) / 100
-    const lastUpdate = new Date(item.lastUpdate * 1000)
-
     nameCell.innerHTML = item.name
-    countCell.innerHTML = item.drinkCount
-    balanceCell.innerHTML = euro.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })
+    countCell.innerHTML = item.withdrawalCount.toLocaleString()
+    balanceCell.innerHTML = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(item.balance / 100)
 
-    if (euro <= -10) {
-        balanceCell.classList.add('debt')
+    if (item.balance <= -1000) {
+      balanceCell.classList.add('debt')
     }
 
-    lastChange.innerHTML = lastUpdate.toLocaleString('de-DE')
-    })
+    lastChange.innerHTML = new Date(item.lastUpdate * 1000).toLocaleString('de-DE')
+  })
 }
-
-window.onload = updateTable();
