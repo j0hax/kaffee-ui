@@ -12,7 +12,7 @@ let server_online = false;
  * @returns JSON
  */
 async function postData(resource = '', data = {}) {
-  url = config.server + resource
+  const url = config.server + resource
 
   const response = await fetch(url, {
     method: 'POST',
@@ -30,9 +30,9 @@ async function postData(resource = '', data = {}) {
 
 // User books a drink
 function add_drink(username) {
-  transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
+  const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
-  users = get_users()
+  const users = get_users()
   const foundUser = users.find(({ name }) => name === username)
 
   transactions.push({
@@ -59,7 +59,7 @@ function get_users() {
 }
 
 function sync() {
-  transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
+  const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   // sync all pending transactions
   postData('/transactions', transactions).then(
