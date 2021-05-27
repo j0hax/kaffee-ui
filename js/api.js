@@ -3,7 +3,7 @@
  * and synchronise this with a server.
  */
 
-let server_online = false;
+let server_online = false
 
 /**
  * Sends data to the configured server and returns the JSON
@@ -11,7 +11,7 @@ let server_online = false;
  * @param {Object} data
  * @returns JSON
  */
-async function postData(resource = '', data = {}) {
+async function postData (resource = '', data = {}) {
   const url = config.server + resource
 
   const response = await fetch(url, {
@@ -29,7 +29,7 @@ async function postData(resource = '', data = {}) {
 }
 
 // User books a drink
-function add_drink(username) {
+function add_drink (username) {
   const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   const users = get_users()
@@ -48,17 +48,17 @@ function add_drink(username) {
 }
 
 // sort users by their last modified date
-function compare_users(a, b) {
+function compare_users (a, b) {
   return b.lastUpdate - a.lastUpdate
 }
 
 // get a list of users
-function get_users() {
+function get_users () {
   sync()
   return JSON.parse(localStorage.getItem('users') || '[]')
 }
 
-function sync() {
+function sync () {
   const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   // sync all pending transactions
@@ -71,17 +71,17 @@ function sync() {
       // Update dynamic content
       updateGrid(users)
       updateTable(users)
-      server_online = true;
+      server_online = true
     },
     function (data) {
       console.error('Could not sync: ' + data)
       showAlert('Achtung, server ist nicht erreichbar.')
-      server_online = false;
+      server_online = false
     }
   )
 }
 
-function showAlert(message) {
+function showAlert (message) {
   const stat = document.getElementById('mainStatus')
   const collapse = new bootstrap.Collapse(stat, { toggle: false })
   stat.innerHTML = message

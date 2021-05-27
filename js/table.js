@@ -1,6 +1,6 @@
-function updateTable(users) {
+function updateTable (users) {
   const table = document.getElementById('overview')
-  table.innerHTML = ""
+  table.innerHTML = ''
 
   users.forEach(function (item, index, array) {
     row = table.insertRow()

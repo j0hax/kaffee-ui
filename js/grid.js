@@ -3,7 +3,7 @@
  * Updates the Grid with a an array of users
  * @param {Array} users
  */
-async function updateGrid(users) {
+async function updateGrid (users) {
   grid = document.getElementById('user-grid')
 
   // clear
