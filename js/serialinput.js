@@ -10,11 +10,13 @@ function logKey (e) {
         const users = get_users()
         const foundUser = users.find(user => buffer.toUpperCase() === user.transponder.toUpperCase())
         if (foundUser) {
-            // if we have a match, book a drink and reset the buffer
+            // if we have a match, book a drink
             console.log("Serial No. " + buffer + " belongs to " + foundUser.name)
             add_drink(foundUser.name)
-            buffer = ""
         }
+        
+        // reset the buffer
+        buffer = ""
     } else {
         buffer += e.key
     }
