@@ -1,25 +1,21 @@
-// weird ringpuffer
-const buffer = new Array()
-buffer.push = function () {
-  if (this.length >= 8) {
-    this.shift()
-  }
-  return Array.prototype.push.apply(this, arguments)
-}
+buffer = ""
 
 // Keylistener for UUIDs/Barcodes
 document.addEventListener('keydown', logKey)
 
 function logKey (e) {
-  buffer.push(String.fromCharCode(e.keyCode))
-
-  idString = buffer.join('')
-
-  // search for users with this ID
-  const foundUser = users.find(user => idString.includes(user.serial))
-  if (foundUser) {
-    // if we have a match, book a drink and reset the buffer
-    add_drink(foundUser.name)
-    buffer.length = 0
-  }
+    
+    if (e.key == 'Enter') {
+        // search for users with this ID
+        const users = get_users()
+        const foundUser = users.find(user => buffer.toUpperCase() === user.transponder.toUpperCase())
+        if (foundUser) {
+            // if we have a match, book a drink and reset the buffer
+            console.log("Serial No. " + buffer + " belongs to " + foundUser.name)
+            add_drink(foundUser.name)
+            buffer = ""
+        }
+    } else {
+        buffer += e.key
+    }
 }
