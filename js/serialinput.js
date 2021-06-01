@@ -13,6 +13,8 @@ function logKey (e) {
             // if we have a match, book a drink
             console.log("Serial No. " + buffer + " belongs to " + foundUser.name)
             add_drink(foundUser.name)
+        } else {
+            showAlert("Unbekannte Karte")
         }
         
         // reset the buffer
