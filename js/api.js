@@ -39,7 +39,7 @@ function add_drink (username) {
     user: foundUser.id,
     amount: -(config.drinkPrice),
     description: 'Buchung vom Kaffeesysem',
-    timestamp: Date.now() / 100
+    timestamp: Date.now() / 1000
   })
 
   localStorage.setItem('transactions', JSON.stringify(transactions))
