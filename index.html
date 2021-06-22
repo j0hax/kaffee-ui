@@ -35,6 +35,10 @@
         user-select: none;
     }
 
+    #logo {
+      width: 100%;
+    }
+
     /* Hide scrollbars */
     ::-webkit-scrollbar {
       display: none;
@@ -59,6 +63,7 @@
   <div class="container-fluid">
     <div class="row">
       <ul class="col d-flex p-3 nav nav-pills flex-column text-white bg-dark">
+        <img id="logo" src="logos/logo-dark.svg" alt="Italian Trulli">
         <span id="title">Kaffeesystem</span>
         <hr>
         <li class="nav-item">
@@ -144,7 +149,7 @@
     </div>
   </div>
   <script>
-    window.onload = function () {
+    window.onload = function () { 
       // Set our App Title according to the configured server
       const title = document.getElementById('title')
       title.innerHTML = new URL(config.server).hostname
