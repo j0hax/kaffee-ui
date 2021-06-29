@@ -11,7 +11,7 @@ let server_online = false
  * @param {Object} data
  * @returns JSON
  */
-async function postData (resource = '', data = {}) {
+async function postData(resource = '', data = {}) {
   const url = config.server + resource
 
   const response = await fetch(url, {
@@ -29,7 +29,7 @@ async function postData (resource = '', data = {}) {
 }
 
 // User books a drink
-function add_drink (username) {
+function add_drink(username) {
   const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   const users = get_users()
@@ -48,29 +48,29 @@ function add_drink (username) {
 }
 
 // sort users by their last modified date
-function compare_users (a, b) {
+function compare_users(a, b) {
   return b.lastUpdate - a.lastUpdate
 }
 
 // get a list of users
-function get_users () {
+function get_users() {
   sync()
   return JSON.parse(localStorage.getItem('users') || '[]')
 }
 
-function sync () {
+function sync() {
   const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   // sync all pending transactions
   postData('/transactions', transactions).then(
-    function (users) {
-      localStorage.setItem('users', JSON.stringify(users))
-      console.log('Synced %i users with %i transactions', users.length, transactions.length)
+    function (data) {
+      localStorage.setItem('users', JSON.stringify(data.users))
+      console.log('Synced %i users with %i transactions', data.users.length, transactions.length)
       localStorage.setItem('transactions', '[]')
 
       // Update dynamic content
-      updateGrid(users)
-      updateTable(users)
+      updateGrid(data.users)
+      updateTable(data.users)
       server_online = true
     },
     function (data) {
@@ -81,7 +81,7 @@ function sync () {
   )
 }
 
-function showAlert (message) {
+function showAlert(message) {
   const stat = document.getElementById('mainStatus')
   const collapse = new bootstrap.Collapse(stat, { toggle: false })
   stat.innerHTML = message
