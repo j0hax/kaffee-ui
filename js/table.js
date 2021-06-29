@@ -1,4 +1,4 @@
-function updateTable (users) {
+function updateTable(users) {
   const table = document.getElementById('overview')
   table.innerHTML = ''
 
@@ -10,7 +10,7 @@ function updateTable (users) {
     lastChange = row.insertCell()
 
     nameCell.innerHTML = item.name
-    countCell.innerHTML = item.withdrawalCount.toLocaleString()
+    countCell.innerHTML = item.withdrawals.toLocaleString()
     balanceCell.innerHTML = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(item.balance / 100)
 
     if (item.balance <= -1000) {
