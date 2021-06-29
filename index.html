@@ -27,11 +27,11 @@
 
   <style>
     body {
-        /* Body font */
-        font-family: "Rotis Sans Serif Std", sans-serif;
-        cursor: crosshair;
-        /* Disable text selection */
-        user-select: none;
+      /* Body font */
+      font-family: "Rotis Sans Serif Std", sans-serif;
+      cursor: crosshair;
+      /* Disable text selection */
+      user-select: none;
     }
 
     #logo {
@@ -88,6 +88,8 @@
             <div class="row g-2 row-cols-3" id="user-grid">
             </div>
           </div>
+          <hr>
+          <p>Kaffee Preis: <span class="drink-price"></span></p>
         </div>
         <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="profile-tab">
           <table class="table table-striped">
@@ -148,7 +150,7 @@
     </div>
   </div>
   <script>
-    window.onload = function () { 
+    window.onload = function () {
       // Set our App Title according to the configured server
       const title = document.getElementById('title')
       title.innerHTML = new URL(config.server).hostname
