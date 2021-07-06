@@ -16,7 +16,7 @@ function updateStatus(statistics) {
     query.innerHTML = statistics.queryTime * 1000 + " Millisekunden"
     motd.innerHTML = statistics.motd
     
-    document.getElementById("debug").innerHTML = JSON.stringify(statistics, null, '\t')
+    document.getElementById("debug").textContent = JSON.stringify(statistics, null, 2)
 }
 
 /* Updates every element containing the class drink-price */
