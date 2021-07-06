@@ -64,20 +64,18 @@ function sync() {
   // sync all pending transactions
   postData('/transactions', transactions).then(
     function (data) {
+      server_online = true
+        
       // Update user data
       localStorage.setItem('users', JSON.stringify(data.users))
       console.log('Synced %i users with %i transactions', data.users.length, transactions.length)
       localStorage.setItem('transactions', '[]')
 
-      // Update price
-      config.drinkPrice = data.statistics.drinkPrice;
-
       // Update dynamic content
       updateGrid(data.users)
       updateTable(data.users)
+      updateStatus(data.statistics)
       updatePrices(data.statistics.drinkPrice)
-
-      server_online = true
     },
     function (data) {
       console.error('Could not sync: ' + data)
@@ -93,18 +91,4 @@ function showAlert(message) {
   stat.innerHTML = message
   collapse.show()
   setTimeout(function () { collapse.hide() }, 3000)
-}
-
-function updatePrices(price) {
-  const formatter = new Intl.NumberFormat('de-DE', {
-    style: 'currency',
-    currency: 'EUR',
-  });
-
-  const contents = formatter.format(price / 100)
-
-  var slides = document.getElementsByClassName("drink-price");
-  for (var i = 0; i < slides.length; i++) {
-    slides.item(i).innerHTML = contents;
-  }
 }
