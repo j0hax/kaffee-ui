@@ -1,7 +1,6 @@
 # kaffee-ui
 
-![screenshot](screenshots/main.png "Zweiter Screenshot")
-![screenshot](screenshots/list.png "Übersicht der Konten")
+![LUH Logo](logos/luh-4c.svg "Leibniz Universität Hannover")
 
 ## Funktion
 - `index.html` ist die Hauptseite, welche nie verlassen wird.
@@ -10,7 +9,9 @@
 
 Nutzer werden mittels `localStorage` in einem stringified Array zwischengespeichert. Dieses kann mit dem [kaffee-server](https://github.com/j0hax/kaffee-server) verknüpft werden.
 
-
+## Screenshots
+![screenshot](screenshots/main.png "Zweiter Screenshot")
+![screenshot](screenshots/list.png "Übersicht der Konten")
 
 ### Datenbeispiel
 ```json
