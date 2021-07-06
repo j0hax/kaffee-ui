@@ -29,11 +29,11 @@ async function postData(resource = '', data = {}) {
 }
 
 // User books a drink
-function add_drink(username) {
+function add_drink(userid) {
   const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   const users = get_users()
-  const foundUser = users.find(({ name }) => name === username)
+  const foundUser = users.find(({ id }) => id == userid)
 
   transactions.push({
     user: foundUser.id,
@@ -44,7 +44,7 @@ function add_drink(username) {
 
   localStorage.setItem('transactions', JSON.stringify(transactions))
   sync()
-  showAlert('Kaffee für ' + username + ' gebucht.')
+  showAlert('Kaffee für ' + foundUser.name + ' gebucht.')
 }
 
 // sort users by their last modified date

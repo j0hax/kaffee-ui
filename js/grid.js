@@ -44,10 +44,10 @@ async function updateGrid (users) {
 
     body.appendChild(text)
 
+    card.dataset.id = users[i].id
+    
     // Process clicks
-    card.onclick = function () {
-      add_drink(title.innerHTML)
-    }
+    card.onclick = () => { add_drink(card.dataset.id) }
 
     grid.appendChild(column)
   }
