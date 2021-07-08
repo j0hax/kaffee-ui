@@ -1,13 +1,16 @@
 # kaffee-ui
 
-![LUH Logo](logos/luh-4c.svg "Leibniz Universität Hannover")
+<p align="center">
+<img src="logos/luh-4c.svg" alt="Leibniz Universität Hannover" width="500px">
+</p>
 
 ## Funktion
-- `index.html` ist die Hauptseite, welche nie verlassen wird.
-    - `book.html` erlaubt es, Nutzer zu buchen.
-    - `list.html` ist die Tabelle mit Übersicht der Salden.
 
-Nutzer werden mittels `localStorage` in einem stringified Array zwischengespeichert. Dieses kann mit dem [kaffee-server](https://github.com/j0hax/kaffee-server) verknüpft werden.
+Die Oberfläche funktioniert in dem Stil einer _Single-Page-Webanwendung_. Diese muss mit dem [kaffee-server](https://github.com/j0hax/kaffee-server) verknüpft werden.
+
+Nutzer werden mittels `localStorage` in einem stringified Array zwischengespeichert im Fall eines Netzwerkausfalls.
+
+Mit dem STRONGLINK SL040A Kartenleser es möglich Ordnungsnummern auszulesen; nach dem Drücken der <kbd>Enter</kbd> Taste wird der Puffer mit den Nummern der Nutzer verglichen und im Falle von Übereinstimmung ein Kaffe auf dem Nutzer gebucht.
 
 ## Screenshots
 ![screenshot](screenshots/main.png "Zweiter Screenshot")
