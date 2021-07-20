@@ -33,9 +33,7 @@ Mit dem STRONGLINK SL040A Kartenleser es möglich Ordnungsnummern auszulesen; na
 
 ## Konfiguration
 
-Die Seite muss mit einer einfach Datei `config.js` vor Inbetriebnahme konfiguriert werden.
-
-Vor allem wichtig ist ein API-Schlüssel zu erzeugen, wenn der Server eingesetzt wird.
+Die Seite muss mit einer einfach Datei `config.js` vor Inbetriebnahme konfiguriert werden. Vor allem wichtig ist ein API-Schlüssel zu erzeugen, wenn der Server eingesetzt wird.
 
 ### Beispielkonfiguration
 ```javascript
@@ -45,3 +43,8 @@ const config = {
   drinkPrice: 30
 }
 ```
+### Dedizierter Kiosk-Modus
+
+Mit einer `.xsession`-Datei kann der graphische Startvorgang eines Raspberry-Pis geändert werden.
+
+[Eine Datei kann als Gist hier gefunden werden.](https://gist.github.com/j0hax/abb4f5156569687216945e35b86f475a)
