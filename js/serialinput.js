@@ -11,7 +11,7 @@ function logKey (e) {
     if (foundUser) {
       // if we have a match, book a drink
       console.log('Serial No. ' + buffer + ' belongs to ' + foundUser.name)
-      add_drink(foundUser.name)
+      add_drink(foundUser.id)
     } else {
       showAlert('Unbekannte Karte')
     }
