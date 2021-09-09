@@ -34,6 +34,11 @@ function add_drink(userid) {
 
   const users = get_users()
   const foundUser = users.find(({ id }) => id == userid)
+  
+  if (foundUser == null) {
+    console.error("No user with ID " + userid + " found!")
+    return;
+  }
 
   transactions.push({
     user: foundUser.id,
