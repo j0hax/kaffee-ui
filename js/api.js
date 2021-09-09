@@ -75,7 +75,6 @@ function sync() {
       updateGrid(data.users)
       updateTable(data.users)
       updateStatus(data.statistics)
-      updatePrices(data.statistics.drinkPrice)
     },
     function (data) {
       console.error('Could not sync: ' + data)
