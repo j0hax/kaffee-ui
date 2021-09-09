@@ -7,7 +7,7 @@ function logKey (e) {
   if (e.key == 'Enter') {
     // search for users with this ID
     const users = get_users()
-    const foundUser = users.find(user => buffer.toUpperCase() === user.transponder.toUpperCase())
+    const foundUser = users.find(user => user.transponder != null && buffer.toUpperCase() === user.transponder.toUpperCase())
     if (foundUser) {
       // if we have a match, book a drink
       console.log('Serial No. ' + buffer + ' belongs to ' + foundUser.name)
