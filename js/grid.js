@@ -3,7 +3,7 @@
  * Updates the Grid with a an array of users
  * @param {Array} users
  */
-async function updateGrid (users) {
+async function updateGrid(users) {
   grid = document.getElementById('user-grid')
 
   // clear
@@ -45,9 +45,11 @@ async function updateGrid (users) {
     body.appendChild(text)
 
     card.dataset.id = users[i].id
-    
+
     // Process clicks
-    card.onclick = () => { add_drink(card.dataset.id) }
+    card.onclick = () => {
+      if (confirm(`Kaffee für ${title.innerHTML} buchen?`)) { add_drink(card.dataset.id) }
+    }
 
     grid.appendChild(column)
   }
