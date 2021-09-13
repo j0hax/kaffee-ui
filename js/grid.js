@@ -48,7 +48,13 @@ async function updateGrid(users) {
 
     // Process clicks
     card.onclick = () => {
-      if (confirm(`Kaffee für ${title.innerHTML} buchen?`)) { add_drink(card.dataset.id) }
+      const confirmation = new bootstrap.Modal(document.getElementById('staticBackdrop'))
+      document.getElementById('booking-message').innerHTML = `Kaffee für ${title.innerHTML} buchen?`
+      confirmation.show()
+      document.getElementById('button-confirm').onclick = () => {
+        confirmation.hide()
+        add_drink(card.dataset.id)
+      }
     }
 
     grid.appendChild(column)
