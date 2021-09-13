@@ -34,7 +34,7 @@ function add_drink(userid) {
 
   const users = get_users()
   const foundUser = users.find(({ id }) => id == userid)
-  
+
   if (foundUser == null) {
     console.error("No user with ID " + userid + " found!")
     return;
@@ -49,6 +49,11 @@ function add_drink(userid) {
 
   localStorage.setItem('transactions', JSON.stringify(transactions))
   sync()
+
+  // switch to main tab
+  const firstTab = new bootstrap.Tab(document.getElementById('mainTab'))
+  firstTab.show()
+
   showAlert('Kaffee für ' + foundUser.name + ' gebucht.')
 }
 
@@ -70,7 +75,7 @@ function sync() {
   postData('/transactions', transactions).then(
     function (data) {
       server_online = true
-        
+
       // Update user data
       localStorage.setItem('users', JSON.stringify(data.users))
       console.log('Synced %i users with %i transactions', data.users.length, transactions.length)
