@@ -99,5 +99,5 @@ function showAlert(message) {
   const collapse = new bootstrap.Collapse(stat, { toggle: false })
   stat.innerHTML = message
   collapse.show()
-  setTimeout(function () { collapse.hide() }, 3000)
+  setTimeout(function () { collapse.hide() }, 5000)
 }
