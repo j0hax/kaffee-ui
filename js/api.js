@@ -72,7 +72,7 @@ function sync() {
   const transactions = JSON.parse(localStorage.getItem('transactions') || '[]')
 
   // sync all pending transactions
-  postData('/transactions', transactions).then(
+  postData('transactions', transactions).then(
     function (data) {
       server_online = true
 
