@@ -95,6 +95,7 @@ function sync() {
 }
 
 function showAlert(message) {
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
   const stat = document.getElementById('mainStatus')
   const collapse = new bootstrap.Collapse(stat, { toggle: false })
   stat.innerHTML = message
